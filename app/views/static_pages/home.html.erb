@@ -1,0 +1,65 @@
+<% provide(:title, "Home") %>
+
+<% if current_user %>
+
+    <% if current_user.access_granted? %>
+      <div class="jumbotron">
+        <table class="table table-hover" style="background-color: whitesmoke">
+          <thead>
+          <tr>
+            <th>Module</th>
+            <th>Description</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><%= link_to "Server Records", '#' %></td>
+            <td> </td>
+          </tr>
+          <tr>
+            <td><%= link_to "Client Records", '#' %></td>
+            <td> </td>
+          </tr>
+          <tr>
+            <td><%= link_to "Application Records", '#' %></td>
+            <td> </td>
+          </tr>
+          <tr>
+            <td><%= link_to "Open Service Requests", '#' %></td>
+            <td> </td>
+          </tr>
+          <tr>
+            <td><%= link_to "Closed Service Requests", '#' %></td>
+            <td> </td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+  <% else %>
+    <div class="alert-danger">Your Access Request is currently under review.  Please contact the system administrator
+      for more information.
+    </div>
+  <% end  %>
+
+
+<% else %>
+
+  <div class="jumbotron" style="background-color: #2a4b51">
+    <div class="breadcrumb" style="background-color: khaki">
+      <h2>Techweb</h2>
+    </div>
+    <div class="jumbotron">
+      <%= @visitor_view_desc %>
+    </div>
+
+    <div class="breadcrumb" style="background-color: khaki; color: #730E15">
+      <%= @notice_of_access_request %>
+    </div>
+
+  <% end %>
+
+</div>
+

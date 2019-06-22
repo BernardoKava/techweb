@@ -1,0 +1,47 @@
+<%= form_with(model: switch_port, local: true) do |form| %>
+  <% if switch_port.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(switch_port.errors.count, "error") %> prohibited this switch_port from being saved:</h2>
+
+      <ul>
+      <% switch_port.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :network_switch_id %>
+    <%= form.number_field :network_switch_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :port_number %>
+    <%= form.number_field :port_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :server_record_id %>
+    <%= form.number_field :server_record_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :client_record_id %>
+    <%= form.number_field :client_record_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

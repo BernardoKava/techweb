@@ -2,11 +2,15 @@
 <header class="navbar navbar-fixed-top navbar-default">
   <div class="container">
     <%= link_to image_tag("atom.png", alt: "atom logo", :size => "50x50") ,root_path, id: "logo"%>
-    <p id="notice"><%= notice %></p>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",root_path, class: 'fa fa-home' %></li>
-        <li><%= link_to "Centralis",   'http://herga.net' %></li>
+        <% if current_user%>
+          <% if current_user.admin %>
+            <li><%= link_to "System Admin",  rails_admin_path  %></li>
+          <% end  %>
+          <li><%= link_to "Home",root_path, class: 'fa fa-home' %></li>
+          <li><%= link_to "Centralis",   'http://herga.net' %></li>
+        <% end %>
        <% if current_user %>
           <li class="alert-danger"><%= link_to "Log out", destroy_user_session_path, method: :delete, class:'fa fa-sign-out' %></li>
         <% else %>

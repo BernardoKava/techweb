@@ -1,0 +1,87 @@
+<%= form_with(model: herga_application, local: true) do |form| %>
+  <% if herga_application.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(herga_application.errors.count, "error") %> prohibited this herga_application from being saved:</h2>
+
+      <ul>
+      <% herga_application.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dev_framework %>
+    <%= form.text_field :dev_framework %>
+  </div>
+
+  <div class="field">
+    <%= form.label :framework_description %>
+    <%= form.text_area :framework_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :framework_version %>
+    <%= form.text_field :framework_version %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deployment_status_id %>
+    <%= form.number_field :deployment_status_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deployment_date %>
+    <%= form.date_select :deployment_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :decomissioned_date %>
+    <%= form.date_select :decomissioned_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :person_id %>
+    <%= form.number_field :person_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :server_record_id %>
+    <%= form.number_field :server_record_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inhouse_build %>
+    <%= form.check_box :inhouse_build %>
+  </div>
+
+  <div class="field">
+    <%= form.label :third_party_build %>
+    <%= form.check_box :third_party_build %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_area :notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

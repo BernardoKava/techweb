@@ -1,0 +1,62 @@
+<%= form_with(model: service_request, local: true) do |form| %>
+  <% if service_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(service_request.errors.count, "error") %> prohibited this service_request from being saved:</h2>
+
+      <ul>
+      <% service_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ticket_number %>
+    <%= form.number_field :ticket_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :request_type_id %>
+    <%= form.number_field :request_type_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tech_service_id %>
+    <%= form.number_field :tech_service_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :problem_description %>
+    <%= form.text_area :problem_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :request_status_id %>
+    <%= form.number_field :request_status_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :case_notes %>
+    <%= form.text_area :case_notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :case_resolution %>
+    <%= form.text_area :case_resolution %>
+  </div>
+
+  <div class="field">
+    <%= form.label :resolved %>
+    <%= form.check_box :resolved %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
