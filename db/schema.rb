@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_22_211608) do
+ActiveRecord::Schema.define(version: 2019_06_23_192332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +21,6 @@ ActiveRecord::Schema.define(version: 2019_06_22_211608) do
     t.boolean "active"
     t.boolean "hard_disk"
     t.boolean "network_card"
-    t.integer "server_record_id"
-    t.integer "client_record_id"
     t.text "notes"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -117,6 +115,14 @@ ActiveRecord::Schema.define(version: 2019_06_22_211608) do
     t.integer "reference_number"
   end
 
+  create_table "client_accessories", force: :cascade do |t|
+    t.integer "client_record_id"
+    t.integer "accessory_id"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "client_records", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -128,6 +134,8 @@ ActiveRecord::Schema.define(version: 2019_06_22_211608) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active"
+    t.boolean "on_hold"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -681,6 +689,14 @@ ActiveRecord::Schema.define(version: 2019_06_22_211608) do
     t.decimal "balance"
     t.string "saving_number"
     t.integer "reference_number"
+  end
+
+  create_table "server_accessories", force: :cascade do |t|
+    t.integer "accessory_id"
+    t.integer "server_record_id"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "server_records", force: :cascade do |t|

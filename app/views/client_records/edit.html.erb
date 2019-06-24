@@ -1,6 +1,14 @@
-<h1>Editing Client Record</h1>
+
+<% provide(:title, "Edit") %>
+<div class="breadcrumb" style="background-color: darkblue;color:whitesmoke">
+  <h5>Editing Client Record</h5>
+</div>
+
 
 <%= render 'form', client_record: @client_record %>
 
-<%= link_to 'Show', @client_record %> |
-<%= link_to 'Back', client_records_path %>
+
+<div class="breadcrumb">
+  <%= link_to 'View', @client_record %> |
+  <%= link_to 'Back', client_records_path %>
+</div>

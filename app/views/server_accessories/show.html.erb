@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Accessory:</strong>
+  <%= @server_accessory.accessory_id %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @server_accessory.notes %>
+</p>
+
+<%= link_to 'Edit', edit_server_accessory_path(@server_accessory) %> |
+<%= link_to 'Back', server_accessories_path %>

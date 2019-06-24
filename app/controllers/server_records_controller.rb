@@ -10,6 +10,7 @@ class ServerRecordsController < ApplicationController
   # GET /server_records/1
   # GET /server_records/1.json
   def show
+    @related_accessories = Accessory.where(server_record_id: @server_record.id)
   end
 
   # GET /server_records/new
@@ -69,6 +70,10 @@ class ServerRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def server_record_params
-      params.require(:server_record).permit(:name, :description, :virtual, :operating_system_id, :person_id, :deployment_status_id, :deployment_date, :domain_controller, :functional_level_id, :notes, :user_id)
+      params.require(:server_record).permit(:name, :description, :virtual, :operating_system_id, :person_id,
+                                            :deployment_status_id, :deployment_date, :domain_controller,
+                                            :functional_level_id, :notes, :user_id, server_accessories_attributes:[:id, :accessory_id,
+                                                                                                                   :server_record_id,
+         :notes,:_destroy])
     end
 end

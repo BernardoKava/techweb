@@ -1,0 +1,22 @@
+<div class="nested-fields">
+  <div class="jumbotron" style="background-color: silver">
+    <div class="form-inputs">
+
+      <div class="control-group">
+        <div class ="controls">
+
+          <%= f.association :accessory, collection: Accessory.order(:name),label_method: :name, prompt: "Select", label:"Accessory" %>
+        </div>
+      </div>
+      <br>
+
+
+      <%= f.input :notes %>
+    </div>
+    <hr>
+    <div class="breadcrumb">
+      <%= link_to_remove_association 'Remove', f ,class: 'fa fa-close', style:"font-size:15px;color:red"%>
+    </div>
+  </div>
+</div>
+

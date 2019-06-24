@@ -35,6 +35,8 @@ gem 'groupdate'
 gem 'bootstrap-sass', '3.3.7'
 gem 'devise'
 gem 'pg'
+gem 'simple_form'
+gem 'will_paginate'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

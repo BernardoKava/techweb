@@ -1,6 +1,15 @@
-<h1>Editing Network Switch</h1>
+
+
+<% provide(:title, "Edit") %>
+<div class="breadcrumb" style="background-color: darkblue;color:whitesmoke">
+  <h5>Editing Network Switch</h5>
+</div>
+
 
 <%= render 'form', network_switch: @network_switch %>
 
-<%= link_to 'Show', @network_switch %> |
-<%= link_to 'Back', network_switches_path %>
+
+<div class="breadcrumb">
+  <%= link_to 'View', @network_switch %> |
+  <%= link_to 'Back', network_switches_path %>
+</div>

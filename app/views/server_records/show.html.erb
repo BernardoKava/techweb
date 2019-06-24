@@ -1,59 +1,101 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, "Server") %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @server_record.name %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @server_record.description %>
-</p>
+<div class="breadcrumb" style="background-color: navy;color: white">
+  <h4> Ref#: <%= @server_record.id %> | <%= @server_record.name %> </h4>
+</div>
 
-<p>
-  <strong>Virtual:</strong>
-  <%= @server_record.virtual %>
-</p>
 
-<p>
-  <strong>Operating system:</strong>
-  <%= @server_record.operating_system_id %>
-</p>
+<div class="jumbotron" style="background-color: silver;color: black">
+  <table class="table table-bordered" style="background-color: whitesmoke">
+    <tbody>
+    <tr>
+      <td>Name:</td>
+      <td> <%= @server_record.name %> </td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td> <%= @server_record.description %></td>
+    </tr>
+    <tr>
+      <td>Virtual:</td>
+      <td><%= @server_record.virtual.humanize %></td>
+    </tr>
+    <tr>
+      <td>Operating System:</td>
+      <td><%= @server_record.operating_system.name %></td>
+    </tr>
+    <tr>
+      <td>Person:</td>
+      <td><%= @server_record.person.fullname %></td>
+    </tr>
+    <tr>
+      <td>Deployment Status:</td>
+      <td><%= @server_record.deployment_status.name%> </td>
+    </tr>
+    <tr>
+      <td>Deployment Date:</td>
+      <td><%= @server_record.deployment_date.strftime("%d %b. %Y") %></td>
+    </tr>
+    <tr>
+      <td>Domain Controller:</td>
+      <td><%= @server_record.domain_controller.humanize %></td>
+    </tr>
+    <tr>
+      <td>Functional Level:</td>
+      <td><%= @server_record.functional_level.name %></td>
+    </tr>
+    <tr>
+      <td>Notes:</td>
+      <td>  <%= @server_record.notes %></td>
+    </tr>
+    <tr>
+      <td> Record created by:</td>
+      <td><%= @server_record.user.fullname %></td>
+    </tr>
+    </tbody>
+  </table>
 
-<p>
-  <strong>Person:</strong>
-  <%= @server_record.person_id %>
-</p>
+  <div class="breadcrumb">
+    <%= link_to 'Edit', edit_server_record_path(@server_record) %> |
+    <%= link_to 'Back', server_records_path %>
+  </div>
+</div>
 
-<p>
-  <strong>Deployment status:</strong>
-  <%= @server_record.deployment_status_id %>
-</p>
+<div class="jumbotron" style="background-color: silver">
+  <div class="breadcrumb", style="background-color: darkgrey">
+    Related Accessories
+  </div>
 
-<p>
-  <strong>Deployment date:</strong>
-  <%= @server_record.deployment_date %>
-</p>
+  <table class="table table-bordered" style="background-color: white;color: black">
+    <thead>
+    <tr>
+      <th>Accessory</th>
+      <th>Notes</th>
 
-<p>
-  <strong>Domain controller:</strong>
-  <%= @server_record.domain_controller %>
-</p>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
 
-<p>
-  <strong>Functional level:</strong>
-  <%= @server_record.functional_level_id %>
-</p>
+    <tbody>
+    <% for server_accessory in @server_record.server_accessories %>
+      <tr>
+        <td data-toggle= "tooltip"  data-placement="top"
+        title="Description: <%= server_accessory.accessory.description %> - Active: <%=server_accessory.accessory.active.humanize %>
+        - HD: <%= server_accessory.accessory.hard_disk.humanize %> - NIC: <%=server_accessory.accessory.network_card.humanize %>
+        - Notes: <%= server_accessory.accessory.notes %> ">
+          <%= server_accessory.accessory.name %></td>
+        <td><%= server_accessory.notes %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 
-<p>
-  <strong>Notes:</strong>
-  <%= @server_record.notes %>
-</p>
+  <div class="breadcrumb">
+    <%= link_to 'Edit', edit_server_record_path(@server_record) %> |
+    <%= link_to 'Back', server_records_path %>
+  </div>
 
-<p>
-  <strong>User:</strong>
-  <%= @server_record.user_id %>
-</p>
+</div>
 
-<%= link_to 'Edit', edit_server_record_path(@server_record) %> |
-<%= link_to 'Back', server_records_path %>
+

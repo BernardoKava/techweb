@@ -1,4 +1,4 @@
-<%= form_with(model: server_record, local: true) do |form| %>
+<%= simple_form_for(@server_record, html: { class: 'form' }) do |f| %>
   <% if server_record.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(server_record.errors.count, "error") %> prohibited this server_record from being saved:</h2>
@@ -11,62 +11,70 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="jumbotron" style="background-color: silver">
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <div>
+          <%= f.input :virtual %>
+        </div>
+        <div>
+          <%= f.input :domain_controller %>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :deployment_date %>
+        <%= f.association :operating_system, collection: OperatingSystem.order(:name),label_method: :name,
+                             prompt: "Select", label:"Operating System" %>
+
+        <%= f.association :person, collection: Person.order(:fullname),label_method: :fullname,
+                          prompt: "Select", label:"Owner" %>
+
+        <%= f.association :deployment_status, collection: DeploymentStatus.order(:name),label_method: :name,
+                             prompt: "Select ", label:"Deployment Status" %>
+
+        <%= f.association :functional_level, collection: FunctionalLevel.order(:name),label_method: :name,
+                             prompt: "Select ", label:"Functional Level" %>
+
+        <%= f.input :user_id, :as =>  :hidden,input_html: {value:current_user.id} %>
+
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :notes %>
+      </div>
+    </div>
+
+    <div class="breadcrumb" style="background-color: lightgray">
+      <%= f.button :submit, "Save" %>
+    </div>
+
+
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="jumbotron" style="background-color: lightgrey">
+
+    <div class="breadcrumb" style="background-color: darkgrey">
+        Server Accessories
+    </div>
+
+    <div class="nested_fields">
+
+      <%= f.simple_fields_for :server_accessories do |accessory| %>
+        <div class="jumbotron">
+          <%= render 'server_accessory_fields', :f => accessory %>
+        </div>
+      <% end %>
+      <br>
+      <div class="breadcrumb">
+        <%= link_to_add_association 'Add', f, :server_accessories, class: 'fa fa-plus',style:"font-size:15px;color:green"%>
+      </div>
+    </div>
+    <hr/>
   </div>
 
-  <div class="field">
-    <%= form.label :virtual %>
-    <%= form.check_box :virtual %>
-  </div>
 
-  <div class="field">
-    <%= form.label :operating_system_id %>
-    <%= form.number_field :operating_system_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :person_id %>
-    <%= form.number_field :person_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :deployment_status_id %>
-    <%= form.number_field :deployment_status_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :deployment_date %>
-    <%= form.date_select :deployment_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :domain_controller %>
-    <%= form.check_box :domain_controller %>
-  </div>
-
-  <div class="field">
-    <%= form.label :functional_level_id %>
-    <%= form.number_field :functional_level_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :notes %>
-    <%= form.text_area :notes %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="breadcrumb" style="background-color: silver">
+    <%= f.button :submit, "Save" %>
   </div>
 <% end %>

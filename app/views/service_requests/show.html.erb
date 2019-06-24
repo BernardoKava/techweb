@@ -1,49 +1,63 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, "SR") %>
 
-<p>
-  <strong>Ticket number:</strong>
-  <%= @service_request.ticket_number %>
-</p>
 
-<p>
-  <strong>Request type:</strong>
-  <%= @service_request.request_type_id %>
-</p>
+<div class="breadcrumb" style="background-color: navy;color: white">
+  <h4> Ref#: <%= @service_request.ticket_number %> | <%= @service_request.tech_service.name %> </h4>
+</div>
 
-<p>
-  <strong>Tech service:</strong>
-  <%= @service_request.tech_service_id %>
-</p>
 
-<p>
-  <strong>Problem description:</strong>
-  <%= @service_request.problem_description %>
-</p>
+<div class="jumbotron" style="background-color: silver;color: black">
+  <table class="table table-bordered" style="background-color: whitesmoke">
+    <tbody>
+    <tr>
+      <td>SR Date:</td>
+      <td> <%= @service_request.created_at.strftime("%d %b. %Y")  %></td>
+    </tr>
+    <tr>
+      <td>Last Seen On:</td>
+      <td> <%= @service_request.updated_at.strftime("%d %b. %Y")  %></td>
+    </tr>
+    <tr>
+      <td>Ticket number:</td>
+      <td> <%= @service_request.ticket_number %></td>
+    </tr>
+    <tr>
+      <td>Tech service:</td>
+      <td> <%= @service_request.tech_service.name %></td>
+    </tr>
+    <tr>
+      <td>Problem description:</td>
+      <td><%= @service_request.problem_description %></td>
+    </tr>
+    <tr>
+      <td>Request status:</td>
+      <td><%= @service_request.request_status.name%></td>
+    </tr>
+    <tr>
+      <td>Case notes:</td>
+      <td><%= @service_request.case_notes %></td>
+    </tr>
+    <tr>
+      <td>Case resolution:</td>
+      <td> <%= @service_request.case_resolution %></td>
+    </tr>
+    <tr>
+      <td>Resolved:</td>
+      <td><%= @service_request.resolved.humanize %></td>
+    </tr>
+    <tr>
+      <td>Created By:</td>
+      <td>  <%= @service_request.user.fullname %></td>
+    </tr>
+    </tbody>
+  </table>
 
-<p>
-  <strong>Request status:</strong>
-  <%= @service_request.request_status_id %>
-</p>
+  <div class="breadcrumb">
+    <%= link_to 'Edit', edit_service_request_path(@service_request) %> |
+    <%= link_to 'Back', service_requests_path %>
+  </div>
+</div>
 
-<p>
-  <strong>Case notes:</strong>
-  <%= @service_request.case_notes %>
-</p>
 
-<p>
-  <strong>Case resolution:</strong>
-  <%= @service_request.case_resolution %>
-</p>
 
-<p>
-  <strong>Resolved:</strong>
-  <%= @service_request.resolved %>
-</p>
 
-<p>
-  <strong>User:</strong>
-  <%= @service_request.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_service_request_path(@service_request) %> |
-<%= link_to 'Back', service_requests_path %>

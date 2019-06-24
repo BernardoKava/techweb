@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Server Accessories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Accessory</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @server_accessories.each do |server_accessory| %>
+      <tr>
+        <td><%= server_accessory.accessory_id %></td>
+        <td><%= server_accessory.notes %></td>
+        <td><%= link_to 'Show', server_accessory %></td>
+        <td><%= link_to 'Edit', edit_server_accessory_path(server_accessory) %></td>
+        <td><%= link_to 'Destroy', server_accessory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Server Accessory', new_server_accessory_path %>

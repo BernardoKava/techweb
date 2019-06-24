@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Client record:</strong>
+  <%= @client_accessory.client_record_id %>
+</p>
+
+<p>
+  <strong>Accessory:</strong>
+  <%= @client_accessory.accessory_id %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @client_accessory.notes %>
+</p>
+
+<%= link_to 'Edit', edit_client_accessory_path(@client_accessory) %> |
+<%= link_to 'Back', client_accessories_path %>

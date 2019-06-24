@@ -1,6 +1,14 @@
-<h1>Editing Herga Application</h1>
+
+<% provide(:title, "Edit") %>
+<div class="breadcrumb" style="background-color: darkblue;color:whitesmoke">
+  <h5>Editing Application</h5>
+</div>
+
 
 <%= render 'form', herga_application: @herga_application %>
 
-<%= link_to 'Show', @herga_application %> |
-<%= link_to 'Back', herga_applications_path %>
+
+<div class="breadcrumb">
+  <%= link_to 'View', @herga_application %> |
+  <%= link_to 'Back', herga_applications_path %>
+</div>

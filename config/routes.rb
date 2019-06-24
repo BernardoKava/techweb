@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-
+  get 'service_requests/opensr'
+  get 'service_requests/closedsr'
+  resources :client_accessories
+  resources :server_accessories
   resources :client_records
   resources :switch_ports
   resources :network_switches
@@ -17,5 +20,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   root 'static_pages#home'
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

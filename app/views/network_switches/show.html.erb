@@ -1,59 +1,108 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, "Net SWitch") %>
 
-<p>
-  <strong>Code name:</strong>
-  <%= @network_switch.code_name %>
-</p>
 
-<p>
-  <strong>Branding:</strong>
-  <%= @network_switch.branding %>
-</p>
+<div class="breadcrumb" style="background-color: navy;color: white">
+  <h4> Ref#: <%= @network_switch.id %> | <%= @network_switch.code_name %> </h4>
+</div>
 
-<p>
-  <strong>Number of ports:</strong>
-  <%= @network_switch.number_of_ports %>
-</p>
 
-<p>
-  <strong>S location:</strong>
-  <%= @network_switch.s_location %>
-</p>
+<div class="jumbotron" style="background-color: silver;color: black">
+  <table class="table table-bordered" style="background-color: whitesmoke">
+    <tbody>
+    <tr>
+      <td>Code name:</td>
+      <td>  <%= @network_switch.code_name %> </td>
+    </tr>
+    <tr>
+      <td>Branding:</td>
+      <td> <%= @network_switch.branding %></td>
+    </tr>
+    <tr>
+      <td>Number of ports:</td>
+      <td><%= @network_switch.number_of_ports %></td>
+    </tr>
+    <tr>
+      <td>Swicth location:</td>
+      <td><%= @network_switch.s_location %></td>
+    </tr>
+    <tr>
+      <td>Ip address:</td>
+      <td><%= @network_switch.ip_address %></td>
+    </tr>
+    <tr>
+      <td>User name:</td>
+      <td><<%= @network_switch.user_name %></td>
+    </tr>
+    <tr>
+      <td>Password:</td>
+      <td><%= @network_switch.password %></td>
+    </tr>
+    <tr>
+      <td>Active:</td>
+      <td><%= @network_switch.active.humanize %></td>
+    </tr>
+    <tr>
+      <td>Notes:</td>
+      <td>  <%= @network_switch.notes %></td>
+    </tr>
+    <tr>
+      <td> Record created by:</td>
+      <td><%= @network_switch.user.fullname %></td>
+    </tr>
+    <tr>
+      <td>Owned By:</td>
+      <td><%= @network_switch.person.fullname %></td>
+    </tr>
 
-<p>
-  <strong>Ip address:</strong>
-  <%= @network_switch.ip_address %>
-</p>
+    </tbody>
+  </table>
 
-<p>
-  <strong>User name:</strong>
-  <%= @network_switch.user_name %>
-</p>
+  <div class="breadcrumb">
+    <%= link_to 'Edit', edit_network_switch_path(@network_switch) %> |
+    <%= link_to 'Back', network_switches_path %>
+  </div>
+</div>
 
-<p>
-  <strong>Password:</strong>
-  <%= @network_switch.password %>
-</p>
+<div class="jumbotron" style="background-color: silver">
+  <div class="breadcrumb", style="background-color: darkgrey">
+    Related Port Connections
+  </div>
 
-<p>
-  <strong>Active:</strong>
-  <%= @network_switch.active %>
-</p>
+  <table class="table table-bordered" style="background-color: white;color: black">
+    <thead>
+    <tr>
+      <th>Port Number</th>
+      <th>Server</th>
+      <th>client</th>
+      <th>Notes</th>
 
-<p>
-  <strong>Notes:</strong>
-  <%= @network_switch.notes %>
-</p>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
 
-<p>
-  <strong>User:</strong>
-  <%= @network_switch.user_id %>
-</p>
+    <tbody>
+    <% for port in @network_switch.switch_ports %>
+      <tr>
+        <td><%= port.port_number %></td>
+        <td><%= port.server_record.name %></td>
+        <td><%= port.client_record.name %></td>
+        <td><%= port.notes %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 
-<p>
-  <strong>Person:</strong>
-  <%= @network_switch.person_id %>
-</p>
+  <div class="breadcrumb">
+    <%= link_to 'Edit', edit_network_switch_path(@network_switch) %> |
+    <%= link_to 'Back', network_switches_path %>
 
-<%= link_to 'Edit', edit_network_switch_path(@network_switch) %> |
-<%= link_to 'Back', network_switches_path %>
+  </div>
+
+</div>
+
+
+
+
+
+
+

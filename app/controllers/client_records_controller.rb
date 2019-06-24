@@ -69,6 +69,9 @@ class ClientRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_record_params
-      params.require(:client_record).permit(:name, :description, :virtual, :operating_system_id, :person_id, :deployment_date, :notes, :user_id)
+      params.require(:client_record).permit(:active,:on_hold,:name, :description, :virtual, :operating_system_id,
+                                            :person_id, :deployment_date, :notes, :user_id,
+                                            client_accessories_attributes:[:id, :accessory_id, :client_record_id,
+                                                                           :notes,:_destroy])
     end
 end

@@ -10,6 +10,7 @@ class NetworkSwitchesController < ApplicationController
   # GET /network_switches/1
   # GET /network_switches/1.json
   def show
+
   end
 
   # GET /network_switches/new
@@ -69,6 +70,9 @@ class NetworkSwitchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def network_switch_params
-      params.require(:network_switch).permit(:code_name, :branding, :number_of_ports, :s_location, :ip_address, :user_name, :password, :active, :notes, :user_id, :person_id)
+      params.require(:network_switch).permit(:code_name, :branding, :number_of_ports, :s_location, :ip_address,
+                                             :user_name, :password, :active, :notes, :user_id,
+                                             :person_id,switch_ports_attributes:[:id, :port_number,:server_record_id,
+                                                                                 :client_record_id,:notes,:user_id,:_destroy])
     end
 end

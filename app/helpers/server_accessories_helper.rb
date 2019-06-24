@@ -1,0 +1,2 @@
+module ServerAccessoriesHelper
+end

@@ -5,13 +5,13 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user%>
+          <li><%= link_to "Home",root_path, class: 'fa fa-home' %></li>
+          <li><%= link_to "Centralis",   'http://herga.net' %></li>
           <% if current_user.admin %>
             <li><%= link_to "System Admin",  rails_admin_path  %></li>
           <% end  %>
-          <li><%= link_to "Home",root_path, class: 'fa fa-home' %></li>
-          <li><%= link_to "Centralis",   'http://herga.net' %></li>
         <% end %>
-       <% if current_user %>
+        <% if current_user %>
           <li class="alert-danger"><%= link_to "Log out", destroy_user_session_path, method: :delete, class:'fa fa-sign-out' %></li>
         <% else %>
           <li><%= link_to "Log in", new_user_session_path, class:'fa fa-sign-in' %></li>

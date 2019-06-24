@@ -1,57 +1,83 @@
-<%= form_with(model: client_record, local: true) do |form| %>
+<%= simple_form_for(@client_record, html: { class: 'form' }) do |f| %>
   <% if client_record.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(client_record.errors.count, "error") %> prohibited this client_record from being saved:</h2>
+      <h2><%= pluralize(client_record.errors.count, "error") %> prohibited this server_record from being saved:</h2>
 
       <ul>
-      <% client_record.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% client_record.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+
+
+
+<div class="jumbotron" style="background-color: silver">
+
+  <div class="row">
+    <div class="col-sm-4">
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :deployment_date %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.association :operating_system, collection: OperatingSystem.order(:name),label_method: :name,
+                        prompt: "Select", label:"Operating System" %>
+      <%= f.association :person, collection: Person.order(:fullname),label_method: :fullname,
+                        prompt: "Select", label:"Owner" %>
+      <%= f.input :user_id, :as =>  :hidden,input_html: {value:current_user.id} %>
+
+      <%= f.input :virtual %>
+      <%= f.input :active %>
+      <%= f.input :on_hold %>
+    </div>
+    <div class="col-sm-4">
+      <%= f.input :notes %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="breadcrumb" style="background-color: gray">
+    <%= f.button :submit, "Save" %>
   </div>
 
-  <div class="field">
-    <%= form.label :virtual %>
-    <%= form.check_box :virtual %>
+</div>
+
+
+  <div class="jumbotron" style="background-color: lightgrey">
+
+    <div class="breadcrumb" style="background-color: darkgrey">
+      Client Accessories
+    </div>
+
+    <div class="nested_fields">
+
+      <%= f.simple_fields_for :client_accessories do |accessory| %>
+        <div class="jumbotron">
+          <%= render 'client_accessory_fields', :f => accessory %>
+        </div>
+      <% end %>
+      <br>
+      <div class="breadcrumb">
+        <%= link_to_add_association 'Add', f, :client_accessories, class: 'fa fa-plus',style:"font-size:15px;color:green"%>
+      </div>
+    </div>
+    <hr/>
   </div>
 
-  <div class="field">
-    <%= form.label :operating_system_id %>
-    <%= form.number_field :operating_system_id %>
-  </div>
 
-  <div class="field">
-    <%= form.label :person_id %>
-    <%= form.number_field :person_id %>
-  </div>
 
-  <div class="field">
-    <%= form.label :deployment_date %>
-    <%= form.date_select :deployment_date %>
-  </div>
 
-  <div class="field">
-    <%= form.label :notes %>
-    <%= form.text_area :notes %>
-  </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
+
+
+
+
+
+
+  <div class="breadcrumb" style="background-color: silver">
+    <%= f.button :submit, "Save" %>
   </div>
 <% end %>

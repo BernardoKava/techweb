@@ -1,6 +1,16 @@
-<h1>Editing Service Request</h1>
+
+
+<% provide(:title, "Edit") %>
+<div class="breadcrumb" style="background-color: darkblue;color:whitesmoke">
+  <h5>Editing Service Request</h5>
+</div>
+
 
 <%= render 'form', service_request: @service_request %>
 
-<%= link_to 'Show', @service_request %> |
-<%= link_to 'Back', service_requests_path %>
+
+<div class="breadcrumb">
+  <%= link_to 'View', @service_request %> |
+  <%= link_to 'Back', service_requests_path %>
+
+</div>

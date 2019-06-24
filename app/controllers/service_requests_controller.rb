@@ -4,12 +4,34 @@ class ServiceRequestsController < ApplicationController
   # GET /service_requests
   # GET /service_requests.json
   def index
-    @service_requests = ServiceRequest.all
+
+    @page_title = "SR | All"
+    @service_requests = ServiceRequest.all #.paginate(page: params[:page], :per_page => 10).order("follow_up DESC")
+    @sr_count = ServiceRequest.count
+    render action: :index
+  end
+
+  def opensr
+    @page_title = "SR | Open"
+    @service_requests = ServiceRequest.where(resolved:false) #.paginate(page: params[:page], :per_page => 10).order("follow_up DESC")
+    @sr_count = ServiceRequest.where(resolved:false).count
+    render action: :index
+  end
+
+  def closedsr
+    @page_title = "SR | Closed"
+    @service_requests = ServiceRequest.where(resolved:true) #.paginate(page: params[:page], :per_page => 10).order("follow_up DESC")
+    @sr_count = ServiceRequest.where(resolved:true).count
+    render action: :index
   end
 
   # GET /service_requests/1
   # GET /service_requests/1.json
   def show
+    @sr_volume = ServiceRequest.count
+    @ticket_number = 65822+ (@sr_volume)
+    @service_request.ticket_number= @ticket_number
+    @service_request.save
   end
 
   # GET /service_requests/new

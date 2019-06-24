@@ -1,0 +1,38 @@
+<div class="nested-fields">
+  <div class="jumbotron" style="background-color: silver">
+    <div class="form-inputs">
+
+
+      <%= f.input :port_number %>
+
+      <%= f.input :user_id, :as =>  :hidden,input_html: {value:current_user.id} %>
+
+      <div class="control-group">
+        <div class ="controls">
+
+          <%= f.association :server_record, collection: ServerRecord.order(:name),label_method: :name, prompt: "Select", label:"Server" %>
+        </div>
+      </div>
+      <br>
+
+      <div class="control-group">
+        <div class ="controls">
+
+          <%= f.association :client_record, collection: ClientRecord.order(:name),label_method: :name, prompt: "Select", label:"Client" %>
+        </div>
+      </div>
+      <br>
+      <%= f.input :notes %>
+    </div>
+    <hr>
+    <div class="breadcrumb">
+      <%= link_to_remove_association 'Remove', f ,class: 'fa fa-close', style:"font-size:15px;color:red"%>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

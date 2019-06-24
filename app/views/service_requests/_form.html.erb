@@ -1,4 +1,4 @@
-<%= form_with(model: service_request, local: true) do |form| %>
+<%= simple_form_for(@service_request, html: { class: 'form' }) do |f| %>
   <% if service_request.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(service_request.errors.count, "error") %> prohibited this service_request from being saved:</h2>
@@ -11,52 +11,40 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :ticket_number %>
-    <%= form.number_field :ticket_number %>
+
+  <div class="jumbotron" style="background-color: silver">
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.input :ticket_number, placeholder: "Save SR to generate Reference",:readonly => true %>
+
+        <%= f.association :request_status, collection: RequestStatus.order(:name),label_method: :name,
+                          prompt: "Select", label:"Request Status" %>
+
+        <%= f.association :request_type, collection: RequestType.order(:name),label_method: :name,
+                          prompt: "Select", label:"Request Type" %>
+
+        <%= f.association :tech_service, collection: TechService.order(:name),label_method: :name,
+                          prompt: "Select", label:"Tech Service" %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :problem_description %>
+
+        <%= f.input :case_notes %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :case_resolution %>
+
+        <%= f.input :resolved %>
+
+        <%= f.input :user_id, :as =>  :hidden,input_html: {value:current_user.id} %>
+      </div>
+    </div>
+
+    <div class="breadcrumb" style="background-color: lightgray">
+      <%= f.button :submit, "Save" %>
+    </div>
+
+
   </div>
 
-  <div class="field">
-    <%= form.label :request_type_id %>
-    <%= form.number_field :request_type_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :tech_service_id %>
-    <%= form.number_field :tech_service_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :problem_description %>
-    <%= form.text_area :problem_description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :request_status_id %>
-    <%= form.number_field :request_status_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :case_notes %>
-    <%= form.text_area :case_notes %>
-  </div>
-
-  <div class="field">
-    <%= form.label :case_resolution %>
-    <%= form.text_area :case_resolution %>
-  </div>
-
-  <div class="field">
-    <%= form.label :resolved %>
-    <%= form.check_box :resolved %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

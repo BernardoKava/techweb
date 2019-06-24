@@ -1,74 +1,81 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @herga_application.name %>
-</p>
+<% provide(:title, "Application") %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @herga_application.description %>
-</p>
 
-<p>
-  <strong>Dev framework:</strong>
-  <%= @herga_application.dev_framework %>
-</p>
+<div class="breadcrumb" style="background-color: navy;color: white">
+  <h4> Ref#: <%= @herga_application.id %> | <%= @herga_application.name %> </h4>
+</div>
 
-<p>
-  <strong>Framework description:</strong>
-  <%= @herga_application.framework_description %>
-</p>
 
-<p>
-  <strong>Framework version:</strong>
-  <%= @herga_application.framework_version %>
-</p>
+<div class="jumbotron" style="background-color: silver;color: black">
+  <table class="table table-bordered" style="background-color: whitesmoke">
+    <tbody>
+    <tr>
+      <td>Name:</td>
+      <td><%= @herga_application.name %></td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td> <%= @herga_application.description %></td>
+    </tr>
+    <tr>
+      <td>Dev framework:</td>
+      <td>  <%= @herga_application.dev_framework %></td>
+    </tr>
+    <tr>
+      <td>Framework description:</td>
+      <td><%= @herga_application.framework_description %></td>
+    </tr>
+    <tr>
+      <td>Framework version:</td>
+      <td><%= @herga_application.framework_version %></td>
+    </tr>
+    <tr>
+      <td>Deployment Status:</td>
+      <td><%= @herga_application.deployment_status.name %></td>
+    </tr>
+    <tr>
+      <td>Deployment Date:</td>
+      <td><%= @herga_application.deployment_date.strftime("%d %b. %Y") %></td>
+    </tr>
+    <tr>
+      <td>Decomissioned date:</td>
+      <td>  <%= @herga_application.decomissioned_date.strftime("%d %b. %Y") %></td>
+    </tr>
+    <tr>
+      <td> Record Owned by:</td>
+      <td><%= @herga_application.person.fullname %></td>
+    </tr>
+    <tr>
+      <td> Record created by:</td>
+      <td><%= @herga_application.user.fullname %></td>
+    </tr>
+    <tr>
+      <td>Server record:</td>
+      <td><%= @herga_application.server_record.name %></td>
+    </tr>
+    <tr>
+      <td>Inhouse build:</td>
+      <td><%= @herga_application.inhouse_build.humanize %></td>
+    </tr>
+    <tr>
+      <td>Third party build:</td>
+      <td><%= @herga_application.inhouse_build.humanize %></td>
+    </tr>
+    <tr>
+      <td>Notes:</td>
+      <td><%= @herga_application.notes %></td>
+    </tr>
+    </tbody>
+  </table>
 
-<p>
-  <strong>Deployment status:</strong>
-  <%= @herga_application.deployment_status_id %>
-</p>
+  <div class="breadcrumb">
+    <%= link_to 'Edit', edit_herga_application_path(@herga_application) %> |
+    <%= link_to 'Back', herga_applications_path %>
+  </div>
+</div>
 
-<p>
-  <strong>Deployment date:</strong>
-  <%= @herga_application.deployment_date %>
-</p>
 
-<p>
-  <strong>Decomissioned date:</strong>
-  <%= @herga_application.decomissioned_date %>
-</p>
 
-<p>
-  <strong>Person:</strong>
-  <%= @herga_application.person_id %>
-</p>
 
-<p>
-  <strong>Server record:</strong>
-  <%= @herga_application.server_record_id %>
-</p>
 
-<p>
-  <strong>Inhouse build:</strong>
-  <%= @herga_application.inhouse_build %>
-</p>
-
-<p>
-  <strong>Third party build:</strong>
-  <%= @herga_application.third_party_build %>
-</p>
-
-<p>
-  <strong>Notes:</strong>
-  <%= @herga_application.notes %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @herga_application.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_herga_application_path(@herga_application) %> |
-<%= link_to 'Back', herga_applications_path %>

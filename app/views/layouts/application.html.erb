@@ -7,19 +7,25 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <%= render 'layouts/shim' %>
   </head>
 
   <body>
     <%= render 'layouts/header' %>
     <div class="container">
-      <% if current_user %>
-        <%= render 'layouts/gravatar'%>
-      <% else %>
+      <div>
+        <% if current_user %>
+          <%= render 'layouts/gravatar'%>
+        <% else %>
 
-      <% end %>
+        <% end %>
 
-      <%= yield %>
+        <%= yield %>
+      </div>
+      <div class="breadcrumb" style="background-color: silver">
+        <%= link_to "Return - Home", root_path,style:'color:darkred' %>
+      </div>
 
     </div>
     <div class="footer">

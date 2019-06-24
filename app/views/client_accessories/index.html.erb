@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Client Accessories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Client record</th>
+      <th>Accessory</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @client_accessories.each do |client_accessory| %>
+      <tr>
+        <td><%= client_accessory.client_record_id %></td>
+        <td><%= client_accessory.accessory_id %></td>
+        <td><%= client_accessory.notes %></td>
+        <td><%= link_to 'Show', client_accessory %></td>
+        <td><%= link_to 'Edit', edit_client_accessory_path(client_accessory) %></td>
+        <td><%= link_to 'Destroy', client_accessory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Client Accessory', new_client_accessory_path %>

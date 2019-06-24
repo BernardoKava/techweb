@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  accessory_id: 1
+  notes: MyString
+
+two:
+  accessory_id: 1
+  notes: MyString

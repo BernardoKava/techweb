@@ -1,41 +1,56 @@
+
+<% provide(:title, "Clients") %>
+
+
 <p id="notice"><%= notice %></p>
 
-<h1>Client Records</h1>
+<div class="breadcrumb" style="background-color: darkblue;color:whitesmoke">
+  <h5>Client Records</h5>
+</div>
 
-<table>
-  <thead>
+
+<div class="jumbotron"style=" background-color:silver ">
+  <table class="table table-bordered" style="background-color: white">
+    <thead>
     <tr>
       <th>Name</th>
       <th>Description</th>
       <th>Virtual</th>
-      <th>Operating system</th>
-      <th>Person</th>
-      <th>Deployment date</th>
-      <th>Notes</th>
-      <th>User</th>
+
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @client_records.each do |client_record| %>
       <tr>
         <td><%= client_record.name %></td>
         <td><%= client_record.description %></td>
-        <td><%= client_record.virtual %></td>
-        <td><%= client_record.operating_system_id %></td>
-        <td><%= client_record.person_id %></td>
-        <td><%= client_record.deployment_date %></td>
-        <td><%= client_record.notes %></td>
-        <td><%= client_record.user_id %></td>
-        <td><%= link_to 'Show', client_record %></td>
+        <td><%= client_record.virtual.humanize %></td>
+        <td><%= link_to 'View', client_record %></td>
         <td><%= link_to 'Edit', edit_client_record_path(client_record) %></td>
-        <td><%= link_to 'Destroy', client_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.admin == true %>
+           <td><%= link_to 'Delete', client_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
+  <br>
 
-<%= link_to 'New Client Record', new_client_record_path %>
+  <div class="breadcrumb">
+    <%= link_to 'New Client Record', new_client_record_path %>
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+

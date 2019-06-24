@@ -1,4 +1,4 @@
-<%= form_with(model: herga_application, local: true) do |form| %>
+<%= simple_form_for(@herga_application, html: { class: 'form' }) do |f| %>
   <% if herga_application.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(herga_application.errors.count, "error") %> prohibited this herga_application from being saved:</h2>
@@ -11,77 +11,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="jumbotron" style="background-color: silver">
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :dev_framework %>
+        <%= f.input :framework_description %>
+        <%= f.input :framework_version %>
+        <%= f.input :user_id, :as =>  :hidden,input_html: {value:current_user.id} %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.association :server_record, collection: ServerRecord.order(:name),label_method: :name,
+                          prompt: "Select", label:"Host Server" %>
+        <%= f.association :deployment_status, collection: DeploymentStatus.order(:name),label_method: :name,
+                          prompt: "Select", label:"Deployment Status" %>
+        <%= f.association :person, collection: Person.order(:fullname),label_method: :fullname,
+                          prompt: "Select", label:"Owner" %>
+        <%= f.input :inhouse_build %>
+        <%= f.input :third_party_build %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :deployment_date %>
+        <%= f.input :decomissioned_date %>
+        <%= f.input :notes %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :dev_framework %>
-    <%= form.text_field :dev_framework %>
-  </div>
+    <div class="breadcrumb" style="background-color: gray">
+      <%= f.button :submit, "Save" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :framework_description %>
-    <%= form.text_area :framework_description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :framework_version %>
-    <%= form.text_field :framework_version %>
-  </div>
-
-  <div class="field">
-    <%= form.label :deployment_status_id %>
-    <%= form.number_field :deployment_status_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :deployment_date %>
-    <%= form.date_select :deployment_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :decomissioned_date %>
-    <%= form.date_select :decomissioned_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :person_id %>
-    <%= form.number_field :person_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :server_record_id %>
-    <%= form.number_field :server_record_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :inhouse_build %>
-    <%= form.check_box :inhouse_build %>
-  </div>
-
-  <div class="field">
-    <%= form.label :third_party_build %>
-    <%= form.check_box :third_party_build %>
-  </div>
-
-  <div class="field">
-    <%= form.label :notes %>
-    <%= form.text_area :notes %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
   </div>
 <% end %>

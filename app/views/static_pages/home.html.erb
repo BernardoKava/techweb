@@ -3,36 +3,40 @@
 <% if current_user %>
 
     <% if current_user.access_granted? %>
-      <div class="jumbotron">
+      <div class="jumbotron" style="background-color:silver">
         <table class="table table-hover" style="background-color: whitesmoke">
           <thead>
           <tr>
-            <th>Module</th>
-            <th>Description</th>
+            <th>Modules</th>
 
           </tr>
           </thead>
           <tbody>
           <tr>
-            <td><%= link_to "Server Records", '#' %></td>
-            <td> </td>
+            <td><%= link_to "Server Records", server_records_path %></td>
           </tr>
           <tr>
-            <td><%= link_to "Client Records", '#' %></td>
-            <td> </td>
+            <td><%= link_to "Client Records", client_records_path %></td>
           </tr>
           <tr>
-            <td><%= link_to "Application Records", '#' %></td>
-            <td> </td>
+            <td><%= link_to "Application Records", herga_applications_path %></td>
           </tr>
           <tr>
-            <td><%= link_to "Open Service Requests", '#' %></td>
-            <td> </td>
+            <td><%= link_to "Network Switches Connections", network_switches_path %></td>
           </tr>
           <tr>
-            <td><%= link_to "Closed Service Requests", '#' %></td>
-            <td> </td>
+            <td><%= link_to "Open Service Requests", service_requests_opensr_path %></td>
           </tr>
+          <tr>
+            <td><%= link_to "Closed Service Requests", service_requests_closedsr_path %></td>
+          </tr>
+
+          <% if current_user.admin? %>
+            <tr>
+              <td><%= link_to "All Service Requests", service_requests_path %></td>
+              <td> </td>
+            </tr>
+          <% end %>
 
           </tbody>
         </table>
@@ -61,5 +65,9 @@
 
   <% end %>
 
-</div>
+
+
+
+  </div>
+
 
